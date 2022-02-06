@@ -1,0 +1,17 @@
+## 1. Create a folder in a known location for you
+$ mkdir ${HOME}/postgres-data/
+## 2. run the postgres image
+sudo docker run -d --name dev-postgres -e POSTGRES_PASSWORD=12345678 -v /home/paulius/Desktop/docker/postgres-data/:/var/lib/postgresql/data -p 5432:5432 postgres
+## 3. check that the container is running
+$ docker ps
+>>>
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                    NAMES
+dfa570d6e843        postgres            "docker-entrypoint.s…"   27 hours ago        Up 3 seconds        0.0.0.0:5432->5432/tcp   postgres-test
+
+
+$ docker exec -it dev-postgres bash
+>>> Now you are in the container's bash console. Connect to the database
+root@dfa570d6e843:/# psql -h localhost -U postgres
+>>>
+psql (12.2 (Debian 12.2-2.pgdg100+1))
+Type "help" for help.
