@@ -42,11 +42,10 @@ async function hashPassword(passw) {
 }
 
 async function generateToken(json) {
-  console.log(process.env);
   return new Promise((resolve, reject) => {
     jwt.sign(
       json,
-      process.env.JWT_SECERET,
+      process.env.JWT_SECRET,
       { expiresIn: parseInt(process.env.JWT_TOKEN_EXPIRATION) }, async (err, token) => {
         if (err) throw reject(err);
         resolve(token);
